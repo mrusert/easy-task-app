@@ -1,0 +1,70 @@
+{
+    "lists": [
+        {
+            "name": "My 1st list",
+            "listID": "1",
+            "complete": false,
+            "items": [
+                {
+                    "itemID": "1",
+                    "checked": true,
+                    "item": "Almonds, Unsalted, in the blue bag"
+                },
+                {
+                    "itemID": "3",
+                    "checked": true,
+                    "item": "Bread"
+                },
+                {
+                    "itemID": "31",
+                    "checked": false,
+                    "item": "bath soap"
+                }
+            ]
+        },
+        {
+            "name": "My 2nd list",
+            "listID": "2",
+            "complete": false,
+            "items": [
+                {
+                    "itemID": "1",
+                    "checked": true,
+                    "item": "Almonds, Unsalted, in the blue bag"
+                },
+                {
+                    "itemID": "3",
+                    "checked": true,
+                    "item": "Bread"
+                },
+                {
+                    "itemID": "31",
+                    "checked": false,
+                    "item": "bath soap"
+                }
+            ]
+        },
+        {
+            "name": "My 3rd list",
+            "listID": "3",
+            "complete": false,
+            "items": [
+                {
+                    "itemID": "1",
+                    "checked": true,
+                    "item": "Almonds, Unsalted, in the blue bag"
+                },
+                {
+                    "itemID": "3",
+                    "checked": true,
+                    "item": "Bread"
+                },
+                {
+                    "itemID": "31",
+                    "checked": false,
+                    "item": "bath soap"
+                }
+            ]
+        }
+    ]
+}
