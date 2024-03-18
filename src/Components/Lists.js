@@ -1,20 +1,21 @@
-// import { Link } from 'react-router-dom'
-import List from './List'
+import ListItems from './ListItems'
+import { Link } from 'react-router-dom'
+import { useState, useRef } from 'react'
 
-const Lists = ({ list, name }) => {
-
+const Lists = ({ listID, items, name }) => {
+  
   return (
     <>
-      <li>{name}</li>
-      <ul>
-      {list.map((item) => (
-            <List 
-                key={item.id}
-                item={item}
-            />
+    <Link to={`lists/${listID}`}>
+    <h2>{name}</h2>
+    </Link>
+      {items.map((item) => (
+          <ListItems
+              listID={listID} 
+              key={item.id}
+              item={item}
+          />
         ))}
-      </ul>
-      
     </>
   )
 }

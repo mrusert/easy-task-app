@@ -1,15 +1,16 @@
 import Lists from "./Lists"
 const Feed = ( {lists} ) => {
   return (
-    <ul>
+        <>
         {lists.map((list) => (
             <Lists 
                 key={list.id}
                 name={list.name}
-                list={list.items}
+                items={list.items}
+                listID={list.id}
             />
         ))}
-    </ul>
+        </>
   )
 }
 

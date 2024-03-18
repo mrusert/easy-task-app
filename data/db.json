@@ -1,70 +1,70 @@
 {
-    "lists": [
+  "lists": [
+    {
+      "name": "My 1st list",
+      "id": "1",
+      "complete": false,
+      "items": [
         {
-            "name": "My 1st list",
-            "listID": "1",
-            "complete": false,
-            "items": [
-                {
-                    "itemID": "1",
-                    "checked": true,
-                    "item": "Almonds, Unsalted, in the blue bag"
-                },
-                {
-                    "itemID": "3",
-                    "checked": true,
-                    "item": "Bread"
-                },
-                {
-                    "itemID": "31",
-                    "checked": false,
-                    "item": "bath soap"
-                }
-            ]
+          "id": "1",
+          "checked": true,
+          "item": "Almonds, Unsalted, in the blue bag"
         },
         {
-            "name": "My 2nd list",
-            "listID": "2",
-            "complete": false,
-            "items": [
-                {
-                    "itemID": "1",
-                    "checked": true,
-                    "item": "Almonds, Unsalted, in the blue bag"
-                },
-                {
-                    "itemID": "3",
-                    "checked": true,
-                    "item": "Bread"
-                },
-                {
-                    "itemID": "31",
-                    "checked": false,
-                    "item": "bath soap"
-                }
-            ]
+          "id": "2",
+          "checked": true,
+          "item": "Bread"
         },
         {
-            "name": "My 3rd list",
-            "listID": "3",
-            "complete": false,
-            "items": [
-                {
-                    "itemID": "1",
-                    "checked": true,
-                    "item": "Almonds, Unsalted, in the blue bag"
-                },
-                {
-                    "itemID": "3",
-                    "checked": true,
-                    "item": "Bread"
-                },
-                {
-                    "itemID": "31",
-                    "checked": false,
-                    "item": "bath soap"
-                }
-            ]
+          "id": "3",
+          "checked": false,
+          "item": "bath soap"
         }
-    ]
+      ]
+    },
+    {
+      "name": "My 2nd list",
+      "id": "2",
+      "complete": false,
+      "items": [
+        {
+          "id": "1",
+          "checked": false,
+          "item": "Almonds, Unsalted, in the blue bag"
+        },
+        {
+          "id": "2",
+          "checked": false,
+          "item": "Bread"
+        },
+        {
+          "id": "3",
+          "checked": false,
+          "item": "bath soap"
+        }
+      ]
+    },
+    {
+      "name": "My 3rd list",
+      "id": "3",
+      "complete": false,
+      "items": [
+        {
+          "id": "1",
+          "checked": false,
+          "item": "Almonds, Unsalted, in the blue bag"
+        },
+        {
+          "id": "2",
+          "checked": false,
+          "item": "Bread"
+        },
+        {
+          "id": "3",
+          "checked": true,
+          "item": "bath soap"
+        }
+      ]
+    }
+  ]
 }

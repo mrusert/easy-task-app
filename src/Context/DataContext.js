@@ -10,7 +10,6 @@ export const DataProvider = ({ children }) => {
     const { data, fetchError, isLoading } = useAxiosFetch('http://localhost:3500/lists')
 
     useEffect(() => {
-        console.log(`Data:\n ${data}`)
         setLists(data)
     },[data])
 
