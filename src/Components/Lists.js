@@ -22,7 +22,7 @@ const Lists = ({ listID, items, name }) => {
   return (
     <>
     <Link to={`lists/${listID}`}>
-    <ul style={{"list-style-type": "none"}}>
+    <ul>
       <li className="list">
       <label htmlFor="">{name}</label>
       <button

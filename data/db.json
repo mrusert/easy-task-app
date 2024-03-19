@@ -7,8 +7,13 @@
       "items": [
         {
           "id": "1",
-          "checked": false,
+          "checked": true,
           "item": "New Item"
+        },
+        {
+          "id": "3",
+          "checked": true,
+          "item": "Testing testin"
         }
       ]
     },
@@ -65,6 +70,34 @@
           "item": "Another item to the list"
         }
       ]
+    },
+    {
+      "id": "4",
+      "name": "Testing AddList Form",
+      "complete": false,
+      "items": [
+        {
+          "id": "1",
+          "checked": true,
+          "item": "Testing addlist form"
+        },
+        {
+          "id": "2",
+          "checked": true,
+          "item": "Testing "
+        },
+        {
+          "id": "3",
+          "checked": false,
+          "item": "This is a test"
+        }
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Adding another list",
+      "complete": false,
+      "items": []
     }
   ]
 }
