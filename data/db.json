@@ -8,12 +8,7 @@
         {
           "id": "1",
           "checked": false,
-          "item": "New item"
-        },
-        {
-          "id": "2",
-          "checked": false,
-          "item": "Another new item"
+          "item": "New Item"
         }
       ]
     },
@@ -70,18 +65,6 @@
           "item": "Another item to the list"
         }
       ]
-    },
-    {
-      "id": "4",
-      "name": "My New List",
-      "complete": false,
-      "items": []
-    },
-    {
-      "id": "5",
-      "name": "Another New List",
-      "complete": false,
-      "items": []
     }
   ]
 }

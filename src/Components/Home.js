@@ -1,4 +1,4 @@
-import Feed from "./Feed"
+import Lists from "./Lists"
 import { useNavigate } from 'react-router-dom'
 import { useContext, useState, useRef } from 'react'
 import DataContext from '../Context/DataContext'
@@ -55,7 +55,15 @@ const Home = () => {
         }
         {!isLoading && !fetchError &&
           (searchResults.length 
-            ?  <Feed lists={searchResults} />
+            ? 
+              lists.map((list) => (
+              <Lists 
+                  key={list.id}
+                  name={list.name}
+                  items={list.items}
+                  listID={list.id}
+              />
+              ))
             : <p className="statusMsg">No lists to display</p>)
         }
     </main>
