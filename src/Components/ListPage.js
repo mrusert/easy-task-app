@@ -2,25 +2,38 @@ import { useParams, Link, useNavigate } from "react-router-dom"
 import DataContext from '../Context/DataContext'
 import ListItems from "./ListItems"
 import { useContext, useRef, useState } from 'react'
+import api from '../api/lists'
 
 
 const ListPage = () => {
     const { lists, setLists } = useContext(DataContext)
     const [newItem, setNewItem] = useState([])
     const { id } = useParams()
-    const list = lists.filter(list => (list.id).toString() === id)[0]
+    const listToUpdate = lists.filter(list => (list.id).toString() === id)[0]
     const navigate = useNavigate()
     const inputRef = useRef()
 
-    const handleNewItem = async () => {
-        
+    const handleNewItem = async (e) => {
+        e.preventDefault()
+        const itemID = listToUpdate.items.length ? (Number(listToUpdate.items[listToUpdate.items.length - 1].id) + 1).toString() : "1"
+        const itemToAdd = { id: itemID, checked: false, item: newItem}
+        const updateItems = [...listToUpdate.items, itemToAdd]
+        const newList = {...listToUpdate, items: [...updateItems]}
+        try {
+            const response = await api.put(`/lists/${newList.id}`, newList)
+            setLists(lists.map(list => list.id === newList.id ? { ...response.data } : list))
+          } catch (err) {
+            console.log(err.message)
+        }
+        setNewItem('')
+        navigate(`/lists/${id}`)
     }
 
     return (
         <main className="list">
-        {list && 
+        {listToUpdate && 
             <>
-            <h2>{list.name}</h2>
+            <h2>{listToUpdate.name}</h2>
             <ul>
             <form className="addForm" onSubmit={handleNewItem}>
         <label htmlFor="addItem">Add Item</label>
@@ -43,9 +56,9 @@ const ListPage = () => {
                 Add
             </button>
     </form>
-            {list.items.map((item) => (
+            {listToUpdate.items.map((item) => (
                 <ListItems
-                    listID={list.id} 
+                    listID={listToUpdate.id} 
                     key={item.id}
                     item={item}
                 />
@@ -53,7 +66,7 @@ const ListPage = () => {
             </ul>
             </>
         }
-        {!list && 
+        {!listToUpdate && 
             <>
             <h2>List Not Found</h2>
             <p>Well, that's disappointing</p>

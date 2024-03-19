@@ -63,6 +63,16 @@
           "id": "3",
           "checked": true,
           "item": "bath soap"
+        },
+        {
+          "id": "4",
+          "checked": false,
+          "item": "New item"
+        },
+        {
+          "id": "5",
+          "checked": false,
+          "item": "Test add another item"
         }
       ]
     }
