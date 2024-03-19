@@ -7,12 +7,12 @@
       "items": [
         {
           "id": "1",
-          "checked": true,
+          "checked": false,
           "item": "New item"
         },
         {
           "id": "2",
-          "checked": true,
+          "checked": false,
           "item": "Another new item"
         }
       ]
@@ -46,7 +46,7 @@
       "items": [
         {
           "id": "1",
-          "checked": false,
+          "checked": true,
           "item": "Almonds, Unsalted, in the blue bag"
         },
         {
@@ -56,15 +56,32 @@
         },
         {
           "id": "4",
-          "checked": false,
+          "checked": true,
           "item": "New item"
         },
         {
           "id": "5",
           "checked": false,
           "item": "Test add another item"
+        },
+        {
+          "id": "6",
+          "checked": false,
+          "item": "Another item to the list"
         }
       ]
+    },
+    {
+      "id": "4",
+      "name": "My New List",
+      "complete": false,
+      "items": []
+    },
+    {
+      "id": "5",
+      "name": "Another New List",
+      "complete": false,
+      "items": []
     }
   ]
 }

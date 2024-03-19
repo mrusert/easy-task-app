@@ -1,9 +1,8 @@
 import ListItems from './ListItems'
 import { Link } from 'react-router-dom'
-import { useState, useRef } from 'react'
 
 const Lists = ({ listID, items, name }) => {
-  
+
   return (
     <>
     <Link to={`lists/${listID}`}>

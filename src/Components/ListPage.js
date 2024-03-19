@@ -23,7 +23,7 @@ const ListPage = () => {
             const response = await api.put(`/lists/${newList.id}`, newList)
             setLists(lists.map(list => list.id === newList.id ? { ...response.data } : list))
           } catch (err) {
-            console.log(err.message)
+            console.log(`Error: ${err.message}`)
         }
         setNewItem('')
         navigate(`/lists/${id}`)
@@ -36,26 +36,26 @@ const ListPage = () => {
             <h2>{listToUpdate.name}</h2>
             <ul>
             <form className="addForm" onSubmit={handleNewItem}>
-        <label htmlFor="addItem">Add Item</label>
-        <input
-            autoFocus
-            ref={inputRef}
-            id="addItem"
-            type="text"
-            placeholder="Add Item"
-            required
-            value={newItem}
-            onChange={(e) => setNewItem(e.target.value)}
-        />
-        <button
-            type="submit"
-            aria-label="Add Item"
-            // set focus back to input once button is clicked using the useRef hook, see ref={inputRef} on input
-            onClick={() => inputRef.current.focus()}
-            >
-                Add
-            </button>
-    </form>
+                <label htmlFor="addItem">Add Item</label>
+                <input
+                    autoFocus
+                    ref={inputRef}
+                    id="addItem"
+                    type="text"
+                    placeholder="Add Item"
+                    required
+                    value={newItem}
+                    onChange={(e) => setNewItem(e.target.value)}
+                />
+                <button
+                    type="submit"
+                    aria-label="Add Item"
+                    // set focus back to input once button is clicked using the useRef hook, see ref={inputRef} on input
+                    onClick={() => inputRef.current.focus()}
+                    >
+                        Add
+                </button>
+            </form>
             {listToUpdate.items.map((item) => (
                 <ListItems
                     listID={listToUpdate.id} 
