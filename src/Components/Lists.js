@@ -9,13 +9,16 @@ const Lists = ({ listID, items, name }) => {
     <Link to={`lists/${listID}`}>
     <h2>{name}</h2>
     </Link>
-      {items.map((item) => (
+      {items.length > 0 && items.map((item) => (
           <ListItems
               listID={listID} 
               key={item.id}
               item={item}
           />
         ))}
+        {!items.length > 0 && 
+          <p className="statusMsg">No items to display. Open list to add new item.</p>
+        }
     </>
   )
 }

@@ -25,7 +25,12 @@ const ListItems = ( {listID, item, name} ) => {
     const listToUpdate = lists.filter(list => list.id === listID)[0]
     const updateItems = listToUpdate.items.filter(item => item.id !== itemID)
     const newList = {...listToUpdate, items: [...updateItems]}
-    console.log(newList)
+    try {
+      const response = await api.put(`/lists/${newList.id}`, newList)
+      setLists(lists.map(list => list.id === newList.id ? { ...response.data } : list))
+    } catch (err) {
+      console.log(err.message)
+  }
   }
   return (
     <>
