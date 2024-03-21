@@ -1,8 +1,10 @@
-import { useParams, Link } from "react-router-dom"
-import DataContext from '../Context/DataContext'
 import ListItems from "./ListItems"
 import AddItem from "./AddItem"
+import ListName from "./ListName"
+import { useParams, Link } from "react-router-dom"
+import DataContext from '../Context/DataContext'
 import { useContext } from 'react'
+
 
 
 const ListPage = () => {
@@ -14,7 +16,7 @@ const ListPage = () => {
         <main className="list">
         {listToUpdate && 
             <>
-            <h2>{listToUpdate.name}</h2>
+            <ListName listName={listToUpdate.name} listID={id}/>
             <ul>
             <AddItem listToUpdate={listToUpdate} />
             {listToUpdate.items.map((item) => (

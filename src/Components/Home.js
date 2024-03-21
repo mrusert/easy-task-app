@@ -1,4 +1,4 @@
-import Lists from "./Lists"
+import List from "./List"
 import AddList from "./AddList"
 import { useContext} from 'react'
 import DataContext from '../Context/DataContext'
@@ -18,13 +18,8 @@ const Home = () => {
         {!isLoading && !fetchError &&
           (searchResults.length 
             ? 
-              lists.map((list) => (
-              <Lists 
-                  key={list.id}
-                  name={list.name}
-                  items={list.items}
-                  listID={list.id}
-              />
+            searchResults.map((list) => (
+              <List key={list.id} list={list}/>
               ))
             : <p className="statusMsg">No lists to display</p>)
         }

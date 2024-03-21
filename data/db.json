@@ -1,45 +1,6 @@
 {
   "lists": [
     {
-      "name": "My 1st list",
-      "id": "1",
-      "complete": false,
-      "items": [
-        {
-          "id": "1",
-          "checked": true,
-          "item": "New Item"
-        },
-        {
-          "id": "3",
-          "checked": true,
-          "item": "Testing testin"
-        }
-      ]
-    },
-    {
-      "name": "My 2nd list",
-      "id": "2",
-      "complete": false,
-      "items": [
-        {
-          "id": "1",
-          "checked": false,
-          "item": "Almonds, Unsalted, in the blue bag"
-        },
-        {
-          "id": "2",
-          "checked": false,
-          "item": "Bread"
-        },
-        {
-          "id": "3",
-          "checked": false,
-          "item": "bath soap"
-        }
-      ]
-    },
-    {
       "name": "My 3rd list",
       "id": "3",
       "complete": false,
@@ -55,18 +16,13 @@
           "item": "bath soap"
         },
         {
-          "id": "4",
-          "checked": true,
-          "item": "New item"
-        },
-        {
           "id": "5",
           "checked": false,
           "item": "Test add another item"
         },
         {
           "id": "6",
-          "checked": false,
+          "checked": true,
           "item": "Another item to the list"
         }
       ]
@@ -98,6 +54,34 @@
       "name": "Adding another list",
       "complete": false,
       "items": []
+    },
+    {
+      "id": "6",
+      "name": "Adding New LIst (Edited)",
+      "complete": false,
+      "items": []
+    },
+    {
+      "id": "7",
+      "name": "This is my list (Edited)",
+      "complete": false,
+      "items": [
+        {
+          "id": "1",
+          "checked": true,
+          "item": "This is my item"
+        },
+        {
+          "id": "2",
+          "checked": true,
+          "item": "This is my next item"
+        },
+        {
+          "id": "3",
+          "checked": false,
+          "item": "Add new item"
+        }
+      ]
     }
   ]
 }
