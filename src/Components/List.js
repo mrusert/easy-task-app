@@ -1,27 +1,25 @@
 import ListItems from './ListItems'
 import ListName from './ListName'
 
-const Lists = ( {list} ) => {
+const List = ( {listToUpdate} ) => {
   
   return (
     <>
-    <ListName key={list.id} list={list}/>
-    {list.items.length > 0 &&
-    list.items.map((item) => {
-      return (
+    <ListName key={listToUpdate.id} listToUpdate={listToUpdate} />
+    {listToUpdate.items.length > 0 &&
+    listToUpdate.items.map((item) => (
         <ListItems
-          listID={list.id} 
+          listID={listToUpdate.id} 
           key={item.id}
           item={item}
         />
-      );
-    })
+      ))
     }
-    {!list.items.length > 0 && 
+    {!listToUpdate.items.length > 0 && 
         <p className="statusMsg">No items to display. Open list to add new item.</p>
     }
     </>
   )
 }
 
-export default Lists
+export default List

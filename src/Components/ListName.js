@@ -3,9 +3,9 @@ import DataContext from '../Context/DataContext'
 import { useContext, useState } from 'react'
 import api from '../api/lists'
 
-const ListName = ( { list } ) => {
+const ListName = ( { listToUpdate } ) => {
     const { lists, setLists } = useContext(DataContext)
-    const [editListName, setEditListName] = useState(list.name)
+    const [editListName, setEditListName] = useState(listToUpdate.name)
     const [editMode, setEditMode] = useState(false) 
     const navigate = useNavigate()
     const location = useLocation()
@@ -13,26 +13,27 @@ const ListName = ( { list } ) => {
     const handleListDelete = async (id) => {
         try {
           await api.delete(`/lists/${id}`)
-          const newLists = lists.filter(list => list.id !== id)
+          const newLists = lists.filter(listToUpdate => listToUpdate.id !== id)
           setLists(newLists)
-          location.pathname === `/lists/${list.id}` ? navigate(`/lists/${list.id}`) : navigate('/') 
+          location.pathname === `/lists/${listToUpdate.id}` ? navigate(`/lists/${listToUpdate.id}`) : navigate('/') 
         } catch (err) {
           console.log(`Error: ${err.message}`)
         }
     }
     
     const handleEditListName = async (id) => {
-        if (editListName === list.name) {
+        if (editListName === listToUpdate.name) {
             setEditMode(false)
-            location.pathname === `/lists/${list.id}` ? navigate(`/lists/${list.id}`) : navigate('/') 
+            location.pathname === `/lists/${listToUpdate.id}` ? navigate(`/lists/${listToUpdate.id}`) : navigate('/') 
             return
         }
-        list.name = editListName
+        listToUpdate.name = editListName
         try {
-            const response = await api.put(`/lists/${list.id}`, list)
+            const response = await api.put(`/lists/${listToUpdate.id}`, listToUpdate)
             setLists(lists.map(newList => newList.id === id ? { ...response.data } : newList))
-            setEditListName(list.name)
+            setEditListName(listToUpdate.name)
             setEditMode(false)
+            location.pathname === `/lists/${listToUpdate.id}` ? navigate(`/lists/${listToUpdate.id}`) : navigate('/')
           } catch (err) {
             console.log(`Error: ${err.message}`)
         }
@@ -43,18 +44,18 @@ const ListName = ( { list } ) => {
         {!editMode &&
             <ul>
             <li className="list">
-            <Link to={`lists/${list.id}`}>
-            <h2>{list.name}</h2>
+            <Link to={`lists/${listToUpdate.id}`}>
+            <h2>{listToUpdate.name}</h2>
             </Link>
             <button
                 onClick={() => setEditMode(!editMode)} 
                 tabIndex="0"
-                aria-label={`Edit ${list.id}`} 
+                aria-label={`Edit ${listToUpdate.id}`} 
             >Edit</button>
             <button
-                onClick={() => handleListDelete(list.id)} 
+                onClick={() => handleListDelete(listToUpdate.id)} 
                 tabIndex="0"
-                aria-label={`Delete ${list.id}`} 
+                aria-label={`Delete ${listToUpdate.id}`} 
             >Delete</button>
             </li>
             </ul>

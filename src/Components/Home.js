@@ -5,7 +5,6 @@ import DataContext from '../Context/DataContext'
 
 const Home = () => {
   const { searchResults, fetchError, isLoading, lists } = useContext(DataContext)
-  
   return (
     <main className="Home">
         <AddList />
@@ -19,7 +18,7 @@ const Home = () => {
           (searchResults.length 
             ? 
             searchResults.map((list) => (
-              <List key={list.id} list={list}/>
+              <List key={list.id} listToUpdate={list} />
               ))
             : <p className="statusMsg">No lists to display</p>)
         }

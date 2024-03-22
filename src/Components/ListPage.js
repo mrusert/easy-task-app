@@ -16,7 +16,7 @@ const ListPage = () => {
         <main className="list">
         {listToUpdate && 
             <>
-            <ListName listName={listToUpdate.name} listID={id}/>
+            <ListName key={listToUpdate.id} listToUpdate={listToUpdate} />
             <ul>
             <AddItem listToUpdate={listToUpdate} />
             {listToUpdate.items.map((item) => (

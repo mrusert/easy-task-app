@@ -78,7 +78,7 @@
         },
         {
           "id": "3",
-          "checked": false,
+          "checked": true,
           "item": "Add new item"
         }
       ]

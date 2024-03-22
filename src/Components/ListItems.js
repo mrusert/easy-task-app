@@ -1,9 +1,9 @@
 import api from '../api/lists'
 import DataContext from '../Context/DataContext'
-import { useContext, useState, useRef } from 'react'
+import { useContext} from 'react'
 
 
-const ListItems = ( {listID, item, name} ) => {
+const ListItems = ( {listID, item} ) => {
   const { lists, setLists } = useContext(DataContext)
   
   const handleItemCheck = async (listID, itemID) => { 
