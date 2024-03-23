@@ -21,7 +21,7 @@ const ListPage = () => {
             <AddItem listToUpdate={listToUpdate} />
             {listToUpdate.items.map((item) => (
                 <ListItems
-                    listID={listToUpdate.id} 
+                listToUpdate={listToUpdate} 
                     key={item.id}
                     item={item}
                 />

@@ -67,19 +67,19 @@
       "complete": false,
       "items": [
         {
-          "id": "1",
-          "checked": true,
-          "item": "This is my item"
-        },
-        {
           "id": "2",
-          "checked": true,
+          "checked": false,
           "item": "This is my next item"
         },
         {
           "id": "3",
           "checked": true,
           "item": "Add new item"
+        },
+        {
+          "id": "4",
+          "checked": true,
+          "item": "New Item test"
         }
       ]
     }

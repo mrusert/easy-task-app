@@ -9,7 +9,7 @@ const List = ( {listToUpdate} ) => {
     {listToUpdate.items.length > 0 &&
     listToUpdate.items.map((item) => (
         <ListItems
-          listID={listToUpdate.id} 
+        listToUpdate={listToUpdate} 
           key={item.id}
           item={item}
         />
