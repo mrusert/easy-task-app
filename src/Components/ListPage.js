@@ -23,7 +23,7 @@ const ListPage = () => {
                 <ListItems
                 listToUpdate={listToUpdate} 
                     key={item.id}
-                    item={item}
+                    itemToUpdate={item}
                 />
             ))}
             </ul>

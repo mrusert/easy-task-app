@@ -41,7 +41,7 @@ const ListName = ( { listToUpdate } ) => {
 
     return (
         <>
-        {!editMode &&
+        {!editMode && location.pathname === '/' &&
             <ul>
             <li className="list">
             <Link to={`lists/${listToUpdate.id}`}>
@@ -54,7 +54,24 @@ const ListName = ( { listToUpdate } ) => {
             >Edit</button>
             <button
                 onClick={() => handleListDelete(listToUpdate.id)} 
+                tabIndex="1"
+                aria-label={`Delete ${listToUpdate.id}`} 
+            >Delete</button>
+            </li>
+            </ul>
+        }
+        {!editMode && location.pathname === `/lists/${listToUpdate.id}` &&
+            <ul>
+            <li className="list">
+            <h2>{listToUpdate.name}</h2>
+            <button
+                onClick={() => setEditMode(!editMode)} 
                 tabIndex="0"
+                aria-label={`Edit ${listToUpdate.id}`} 
+            >Edit</button>
+            <button
+                onClick={() => handleListDelete(listToUpdate.id)} 
+                tabIndex="1"
                 aria-label={`Delete ${listToUpdate.id}`} 
             >Delete</button>
             </li>
@@ -82,7 +99,12 @@ const ListName = ( { listToUpdate } ) => {
                 <button
                 type="submit"
                 aria-label="Cancel Edit List Name"
-                onClick={() => setEditMode(false)}
+                onClick={(e) => {
+                    e.preventDefault()
+                    setEditMode(false)
+                    setEditListName(listToUpdate.name)
+                }
+                }
                 >
                     Cancel
                 </button>

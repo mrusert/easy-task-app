@@ -11,7 +11,7 @@ const List = ( {listToUpdate} ) => {
         <ListItems
         listToUpdate={listToUpdate} 
           key={item.id}
-          item={item}
+          itemToUpdate={item}
         />
       ))
     }
