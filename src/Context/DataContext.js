@@ -15,7 +15,9 @@ export const DataProvider = ({ children }) => {
 
     useEffect(() => {
         const filteredResults = lists.filter((list) =>
-            ((list.name).toLowerCase()).includes(search.toLowerCase()))
+            ((list.name).toLowerCase()).includes(search.toLowerCase()) || 
+            list.items.some(item => item.item.toLowerCase().includes(search.toLowerCase()))) 
+
         setSearchResults(filteredResults.reverse())
     }, [lists, search])
 
