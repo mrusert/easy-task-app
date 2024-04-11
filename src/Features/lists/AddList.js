@@ -1,28 +1,28 @@
-import { useContext, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
-import api from '../api/lists'
-import DataContext from '../Context/DataContext'
+import {  useRef, useState } from 'react'
+import { useAddNewListMutation } from './listsSlice'
+
 
 const AddList = () => {
-    const { lists, setLists } = useContext(DataContext)
-    const [newList, setNewList] = useState([])
+    const [addnewList, {isLoading}] = useAddNewListMutation()
+    const [newListName, setnewListName] = useState("")
     const navigate = useNavigate()
     const inputRef = useRef()
 
+    const canSave = newListName && !isLoading
+
     const handleNewList = async (e) => {
         e.preventDefault()
-        const listID = lists.length ? (Number(lists[lists.length - 1].id) + 1).toString() : "1"
-        const listToAdd = {id: listID, name: newList, complete: false, items: []}
         try {
-            const response = await api.post('/lists', listToAdd)
-            const allLists = [ ...lists, response.data ]
-            setLists(allLists)
-            setNewList('')
+            await addnewList({name: newListName})
+            setnewListName('')
             navigate('/')
+            
         } catch (err) {
-            console.log(`Error: ${err.message}`)
-        } 
+            console.error(`Failed to save the list: ${err}`)
+        }
     }
+
   return (
     <form className="addForm" onSubmit={handleNewList}>
           <label htmlFor="addList">Add List</label>
@@ -33,12 +33,13 @@ const AddList = () => {
               type="text"
               placeholder="Add List"
               required
-              value={newList}
-              onChange={(e) => setNewList(e.target.value)}
+              value={newListName}
+              onChange={(e) => setnewListName(e.target.value)}
           />
           <button
               type="submit"
               aria-label="Add List"
+              disabled={!canSave}
               // set focus back to input once button is clicked using the useRef hook, see ref={inputRef} on input
               onClick={() => inputRef.current.focus()}
               >

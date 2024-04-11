@@ -1,30 +1,29 @@
 import { useParams, useNavigate } from "react-router-dom"
-import DataContext from '../Context/DataContext'
-import { useContext, useRef, useState } from 'react'
-import api from '../api/lists'
+import {  useRef, useState } from 'react'
+import { selectListById, useUpdateItemsMutation } from './listsSlice'
+import { useSelector } from "react-redux";
 
-const AddItem = ( {listToUpdate} ) => {
-    const { lists, setLists } = useContext(DataContext)
-    const [newItem, setNewItem] = useState([])
+
+const AddItem = ( {listId} ) => {
+    const { id } = useParams()
     const navigate = useNavigate()
     const inputRef = useRef()
-    const { id } = useParams()
 
-    const handleNewItem = async (e) => {
+    const [updateItems, {isLoading}] = useUpdateItemsMutation()
+    const list = useSelector(state => selectListById(state, id))
+
+    const [newItem, setNewItem] = useState([])
+    
+    const canSave = !isLoading && newItem
+
+    const handleNewItem = (e) => {
         e.preventDefault()
-        const itemID = listToUpdate.items.length ? (Number(listToUpdate.items[listToUpdate.items.length - 1].id) + 1).toString() : "1"
-        const itemToAdd = { id: itemID, checked: false, item: newItem}
-        const updateItems = [...listToUpdate.items, itemToAdd]
-        const newList = {...listToUpdate, items: [...updateItems]}
-        try {
-            const response = await api.put(`/lists/${newList.id}`, newList)
-            setLists(lists.map(list => list.id === newList.id ? { ...response.data } : list))
-            } catch (err) {
-            console.log(`Error: ${err.message}`)
-        }
+        const itemId = list.items.length ? (Number(list.items[list.items.length - 1].id) + 1).toString() : "1"
+        updateItems({listId: list.id, items: [...list.items, {id: itemId, checked: false, name: newItem}]})
         setNewItem('')
         navigate(`/lists/${id}`)
     }
+
     return (
         <form className="addForm" onSubmit={handleNewItem}>
             <label htmlFor="addItem">Add Item</label>
@@ -41,6 +40,7 @@ const AddItem = ( {listToUpdate} ) => {
             <button
                 type="submit"
                 aria-label="Add Item"
+                disabled={!canSave}
                 // set focus back to input once button is clicked using the useRef hook, see ref={inputRef} on input
                 onClick={() => inputRef.current.focus()}
                 >

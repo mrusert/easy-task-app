@@ -1,86 +1,75 @@
 {
   "lists": [
     {
-      "name": "My 3rd list Edited",
-      "id": "3",
+      "name": "My 1st list Edited",
+      "id": "1",
       "complete": false,
+      "date": "2022-04-13T23:02:19.248Z",
       "items": [
         {
           "id": "1",
           "checked": true,
-          "item": "Almonds, Unsalted, in the blue bag Edited"
-        },
-        {
-          "id": "5",
-          "checked": false,
-          "item": "Test add another item"
-        },
-        {
-          "id": "6",
-          "checked": true,
-          "item": "Another item to the list"
-        }
-      ]
-    },
-    {
-      "id": "4",
-      "name": "Testing AddList Form",
-      "complete": false,
-      "items": [
-        {
-          "id": "1",
-          "checked": true,
-          "item": "Testing addlist form"
+          "name": "Almonds, Unsalted, in the blue bag Edited"
         },
         {
           "id": "2",
-          "checked": true,
-          "item": "Testing "
+          "checked": false,
+          "name": "Test add another item"
         },
         {
           "id": "3",
-          "checked": false,
-          "item": "This is a test"
+          "checked": true,
+          "name": "Another item to the list"
         }
       ]
     },
     {
-      "id": "5",
-      "name": "Adding another list",
+      "name": "My 2nd list Edited",
+      "id": "2",
+      "complete": false,
+      "date": "2022-04-12T23:02:19.248Z",
+      "items": [
+        {
+          "id": "1",
+          "checked": true,
+          "name": "Almonds, Unsalted, in the blue bag Edited"
+        },
+        {
+          "id": "2",
+          "checked": false,
+          "name": "Test add another item"
+        },
+        {
+          "id": "3",
+          "checked": true,
+          "name": "Another item to the list"
+        }
+      ]
+    },
+    {
+      "id": "5f5d",
+      "name": "New List Test",
+      "date": "2024-04-11T23:33:06.120Z",
       "complete": false,
       "items": []
     },
     {
-      "id": "7",
-      "name": "This is my list (Edited 5)",
+      "id": "6f47",
+      "name": "New New List Test",
+      "date": "2024-04-11T23:33:57.146Z",
       "complete": false,
-      "items": [
-        {
-          "id": "2",
-          "checked": true,
-          "item": "This is my next item (edit)"
-        },
-        {
-          "id": "5",
-          "checked": false,
-          "item": "This is my. new item edited"
-        }
-      ]
+      "items": []
     },
     {
-      "id": "8",
-      "name": "This is my new new list",
+      "id": "ea90",
+      "name": "Newer List Test",
+      "date": "2024-04-11T23:35:39.583Z",
       "complete": false,
       "items": [
         {
-          "id": "1",
-          "checked": false,
-          "item": "New New New Item"
-        },
-        {
           "id": "2",
           "checked": false,
-          "item": "blah blah blah"
+          "name": "Testing Adding another new item"
         }
       ]
     }

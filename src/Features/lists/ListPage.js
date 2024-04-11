@@ -2,34 +2,33 @@ import ListItems from "./ListItems"
 import AddItem from "./AddItem"
 import ListName from "./ListName"
 import { useParams, Link } from "react-router-dom"
-import DataContext from '../Context/DataContext'
-import { useContext } from 'react'
-
+import { selectListById } from './listsSlice'
+import { useSelector } from "react-redux";
 
 
 const ListPage = () => {
-    const { lists } = useContext(DataContext)
+   
     const { id } = useParams()
-    const listToUpdate = lists.filter(list => (list.id).toString() === id)[0]
+    const list = useSelector(state => selectListById(state, id))
 
     return (
         <main className="list">
-        {listToUpdate && 
+        {list && 
             <>
-            <ListName key={listToUpdate.id} listToUpdate={listToUpdate} />
+            <ListName key={list.id} listId={list.id} />
             <ul>
-            <AddItem listToUpdate={listToUpdate} />
-            {listToUpdate.items.map((item) => (
+            <AddItem listId={list.id} />
+            {list.items.map((item) => (
                 <ListItems
-                listToUpdate={listToUpdate} 
                     key={item.id}
-                    itemToUpdate={item}
+                    listId={list.id} 
+                    itemId={item.id}
                 />
             ))}
             </ul>
             </>
         }
-        {!listToUpdate && 
+        {!list && 
             <>
             <h2>List Not Found</h2>
             <p>Well, that's disappointing</p>

@@ -1,41 +1,41 @@
 import { Link, useNavigate, useLocation } from "react-router-dom"
-import DataContext from '../Context/DataContext'
-import { useContext, useState } from 'react'
-import api from '../api/lists'
+import { useState } from "react";
+import { selectListById, useDeleteListMutation, useUpdateListMutation } from './listsSlice'
+import { useSelector } from "react-redux";
 
-const ListName = ( { listToUpdate } ) => {
-    const { lists, setLists } = useContext(DataContext)
-    const [editListName, setEditListName] = useState(listToUpdate.name)
-    const [editMode, setEditMode] = useState(false) 
+const ListName = ( { listId } ) => {
     const navigate = useNavigate()
     const location = useLocation()
 
+    const list = useSelector(state => selectListById(state, listId))
+    const [updateList, {isLoading}] = useUpdateListMutation()
+    const [deleteList] = useDeleteListMutation()
+
+    const [editListName, setEditListName] = useState(list.name)
+    const [editMode, setEditMode] = useState(false) 
+    
+    const canSave = editListName && !isLoading && (editListName !== list.name) 
+    
+
     const handleListDelete = async (id) => {
         try {
-          await api.delete(`/lists/${id}`)
-          const newLists = lists.filter(listToUpdate => listToUpdate.id !== id)
-          setLists(newLists)
-          location.pathname === `/lists/${listToUpdate.id}` ? navigate(`/lists/${listToUpdate.id}`) : navigate('/') 
+          await deleteList({id: list.id}).unwrap()
+          location.pathname === `/lists/${list.id}` ? navigate(`/lists/${list.id}`) : navigate('/') 
         } catch (err) {
           console.log(`Error: ${err.message}`)
         }
     }
     
     const handleEditListName = async (id) => {
-        if (editListName === listToUpdate.name) {
-            setEditMode(false)
-            location.pathname === `/lists/${listToUpdate.id}` ? navigate(`/lists/${listToUpdate.id}`) : navigate('/') 
-            return
-        }
-        listToUpdate.name = editListName
-        try {
-            const response = await api.put(`/lists/${listToUpdate.id}`, listToUpdate)
-            setLists(lists.map(newList => newList.id === id ? { ...response.data } : newList))
-            setEditListName(listToUpdate.name)
-            setEditMode(false)
-            location.pathname === `/lists/${listToUpdate.id}` ? navigate(`/lists/${listToUpdate.id}`) : navigate('/')
-          } catch (err) {
-            console.log(`Error: ${err.message}`)
+        if (canSave) {
+            try {
+                await updateList({id: list.id, name: editListName, complete: list.complete, items: list.items}).unwrap()
+                setEditListName(list.name)
+                setEditMode(false)
+                location.pathname === `/lists/${list.id}` ? navigate(`/lists/${list.id}`) : navigate('/')
+            } catch (err) {
+                console.log(`Error: ${err.message}`)
+            }
         }
     }
 
@@ -44,35 +44,35 @@ const ListName = ( { listToUpdate } ) => {
         {!editMode && location.pathname === '/' &&
             <ul>
             <li className="list">
-            <Link to={`lists/${listToUpdate.id}`}>
-            <h2>{listToUpdate.name}</h2>
+            <Link to={`lists/${list.id}`}>
+            <h2>{list.name}</h2>
             </Link>
             <button
                 onClick={() => setEditMode(!editMode)} 
                 tabIndex="0"
-                aria-label={`Edit ${listToUpdate.id}`} 
+                aria-label={`Edit ${list.id}`} 
             >Edit</button>
             <button
-                onClick={() => handleListDelete(listToUpdate.id)} 
+                onClick={() => handleListDelete(list.id)} 
                 tabIndex="1"
-                aria-label={`Delete ${listToUpdate.id}`} 
+                aria-label={`Delete ${list.id}`} 
             >Delete</button>
             </li>
             </ul>
         }
-        {!editMode && location.pathname === `/lists/${listToUpdate.id}` &&
+        {!editMode && location.pathname === `/lists/${list.id}` &&
             <ul>
             <li className="list">
-            <h2>{listToUpdate.name}</h2>
+            <h2>{list.name}</h2>
             <button
                 onClick={() => setEditMode(!editMode)} 
                 tabIndex="0"
-                aria-label={`Edit ${listToUpdate.id}`} 
+                aria-label={`Edit ${list.id}`} 
             >Edit</button>
             <button
-                onClick={() => handleListDelete(listToUpdate.id)} 
+                onClick={() => handleListDelete(list.id)} 
                 tabIndex="1"
-                aria-label={`Delete ${listToUpdate.id}`} 
+                aria-label={`Delete ${list.id}`} 
             >Delete</button>
             </li>
             </ul>
@@ -92,6 +92,7 @@ const ListName = ( { listToUpdate } ) => {
             <button
                 type="submit"
                 aria-label="Edit List Name"
+                disabled={!canSave}
                 onClick={() => handleEditListName()}
                 >
                     Submit
@@ -102,7 +103,7 @@ const ListName = ( { listToUpdate } ) => {
                 onClick={(e) => {
                     e.preventDefault()
                     setEditMode(false)
-                    setEditListName(listToUpdate.name)
+                    setEditListName(list.name)
                 }
                 }
                 >
