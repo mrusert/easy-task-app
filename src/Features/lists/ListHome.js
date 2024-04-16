@@ -1,7 +1,7 @@
 import List from "./List"
 import AddList from "./AddList"
 import { useSelector } from "react-redux";
-import { selectAllLists, useGetListsQuery, selectFilteredLists } from "./listsSlice"
+import { useGetListsQuery, selectFilteredLists } from "./listsSlice"
 import { selectSearchTerm } from "./listSearchSlice";
 
 const ListHome = () => {
@@ -12,8 +12,7 @@ const ListHome = () => {
     isError,
     error
   } = useGetListsQuery()
-
-  // const lists = useSelector(selectAllLists)
+  
   // Retrieve the current search term from the Redux store
   const searchTerm = useSelector(selectSearchTerm);
   // Now using selectFilteredLists to filter lists based on the search term
@@ -34,7 +33,7 @@ const ListHome = () => {
           (lists.length 
             ? 
             lists.map((list) => (
-              <List key={list.id} listId={list.id} />
+              <List key={list.id} list={list} />
               ))
             : <p className="statusMsg">No lists to display</p>)
         }

@@ -1,10 +1,12 @@
 import { Link, useNavigate, useLocation } from "react-router-dom"
 import { useState } from "react";
 import { selectListById, useDeleteListMutation, useUpdateListMutation } from './listsSlice'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setSearchTerm } from './listSearchSlice'
 
 const ListName = ( { listId } ) => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const location = useLocation()
 
     const list = useSelector(state => selectListById(state, listId))
@@ -16,7 +18,9 @@ const ListName = ( { listId } ) => {
     
     const canSave = editListName && !isLoading && (editListName !== list.name) 
     
-
+    const handleClearSearch = () => {
+        dispatch(setSearchTerm(""))
+    }
     const handleListDelete = async (id) => {
         try {
           await deleteList({id: list.id}).unwrap()
@@ -44,7 +48,7 @@ const ListName = ( { listId } ) => {
         {!editMode && location.pathname === '/' &&
             <ul>
             <li className="list">
-            <Link to={`lists/${list.id}`}>
+            <Link to={`lists/${list.id}`} onClick={handleClearSearch}>
             <h2>{list.name}</h2>
             </Link>
             <button

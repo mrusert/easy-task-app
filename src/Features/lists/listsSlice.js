@@ -130,7 +130,28 @@ export const selectItemByIdFromList = createSelector(
 export const selectFilteredLists = createSelector(
     [selectAllLists, (_, searchTerm) => searchTerm.toLowerCase()],
     (lists, searchTerm) => lists.filter(list =>
-        list.name.toLowerCase().includes(searchTerm) ||
-        list.items.some(item => item.name.toLowerCase().includes(searchTerm))
+        (list.name?.toLowerCase() || '').includes(searchTerm) ||
+        list.items.find(item => (item.name?.toLowerCase() || '').includes(searchTerm))
     )
 )
+
+// // Memoized selector to filter both lists and their items based on a search term
+// export const selectFilteredLists = createSelector(
+//     [selectAllLists, (_, searchTerm) => searchTerm.toLowerCase()],
+//     (lists, searchTerm) => lists.reduce((acc, list) => {
+//         // Check if the list name matches the search term or if any item in the list matches
+//         const itemsFiltered = list.items.filter(item => 
+//             item.name.toLowerCase().includes(searchTerm)
+//         );
+
+//         if (list.name.toLowerCase().includes(searchTerm) || itemsFiltered.length > 0) {
+//             // Only include the list if the list name matches or it has matching items
+//             acc.push({
+//                 ...list,
+//                 items: itemsFiltered  // Include only items that match the search term
+//             });
+//         }
+
+//         return acc;
+//     }, [])
+// );
